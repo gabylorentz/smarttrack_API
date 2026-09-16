@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SmartTrack API
 
 API REST para o projeto **SmartTrack** — monitoramento automatizado da altura da vegetação nas margens de rodovias, usando sensores de laser (ESP32 + LoRa), agora com **predição por Machine Learning** (ensemble de redes neurais).
@@ -176,3 +177,6 @@ docker run -d -p 8000:8000 --name smarttrack-api smarttrack-api
 - [ ] Adicionar autenticação (API Key) para os endpoints de escrita.
 - [ ] Job agendado para popular `climate-readings` automaticamente (INMET/NASA POWER).
 - [ ] Monitorar a métrica de incerteza do ensemble em produção (alerta se aumentar muito).
+=======
+# smarttrack
+>>>>>>> 9bc13ee5b079b14045628770bedcbea54c91dd3a
