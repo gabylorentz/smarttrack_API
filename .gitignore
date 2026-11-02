@@ -1,0 +1,17 @@
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*.db
+*.sqlite3
+.env
+.pytest_cache/
+.coverage
+htmlcov/
+.vscode/
+.idea/
+*.log
+
+app/ml/model_files/*.keras
+app/ml/model_files/*.joblib
