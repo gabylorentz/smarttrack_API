@@ -1,13 +1,13 @@
-"""
-Módulo de INFERÊNCIA com ENSEMBLE para a API SmartTrack.
+﻿"""
+MÃ³dulo de INFERÃŠNCIA com ENSEMBLE para a API SmartTrack.
 
-Carrega N modelos treinados e retorna a MÉDIA das previsões -- essa
-abordagem foi escolhida após uma investigação (ver
-smarttrack-ml/INVESTIGACAO_BAMBU.md) que mostrou que um único modelo
-tem alta variância entre rodadas de treino (68%-98% de acurácia
-dependendo só da semente aleatória), enquanto o ensemble reduz essa
-instabilidade e melhora a precisão em casos difíceis (vegetação de
-crescimento rápido/errático, como bambu).
+Carrega N modelos treinados e retorna a MÃ‰DIA das previsÃµes -- essa
+abordagem foi escolhida apÃ³s uma investigaÃ§Ã£o (ver
+smarttrack-ml/INVESTIGACAO_BAMBU.md) que mostrou que um Ãºnico modelo
+tem alta variÃ¢ncia entre rodadas de treino (68%-98% de acurÃ¡cia
+dependendo sÃ³ da semente aleatÃ³ria), enquanto o ensemble reduz essa
+instabilidade e melhora a precisÃ£o em casos difÃ­ceis (vegetaÃ§Ã£o de
+crescimento rÃ¡pido/errÃ¡tico, como bambu).
 """
 
 from pathlib import Path
@@ -32,7 +32,7 @@ FEATURE_COLS = [
 
 
 class ModeloNaoDisponivelError(Exception):
-    """Levantado quando os arquivos do modelo treinado não são encontrados."""
+    """Levantado quando os arquivos do modelo treinado nÃ£o sÃ£o encontrados."""
 
 
 class SmartTrackPredictorEnsemble:
@@ -41,20 +41,20 @@ class SmartTrackPredictorEnsemble:
 
         if not SCALER_PATH.exists():
             raise ModeloNaoDisponivelError(
-                f"Scaler não encontrado em '{SCALER_PATH}'. Treine o ensemble primeiro "
+                f"Scaler nÃ£o encontrado em '{SCALER_PATH}'. Treine o ensemble primeiro "
                 f"(ver smarttrack-ml) e copie os arquivos para '{MODEL_FILES_DIR}'."
             )
 
-        self.modelos = []
-        for i in range(n_modelos):
-            caminho = MODEL_FILES_DIR / f"ensemble_modelo_{i}.keras"
-            if not caminho.exists():
-                raise ModeloNaoDisponivelError(
-                    f"Modelo do ensemble não encontrado: '{caminho}'. "
-                    f"Esperado(s) {n_modelos} arquivo(s) 'ensemble_modelo_0.keras' até "
-                    f"'ensemble_modelo_{n_modelos - 1}.keras'."
-                )
-            self.modelos.append(keras.models.load_model(caminho))
+      self.modelos = []
+  
+      caminho = MODEL_FILES_DIR / "smarttrack_model.keras"
+
+      if not caminho.exists():
+      	raise ModeloNaoDisponivelError(
+      	   f"Modelo não encontrado: '{caminho}'."
+    )
+
+self.modelos.append(keras.models.load_model(caminho))
 
         self.scaler = joblib.load(SCALER_PATH)
 
@@ -108,3 +108,4 @@ def get_predictor() -> SmartTrackPredictorEnsemble:
     except ModeloNaoDisponivelError as e:
         _predictor_erro = e
         raise
+
